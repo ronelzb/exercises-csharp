@@ -1,0 +1,8 @@
+# Auto-detect text files and normalize to LF on checkin
+* text=auto eol=lf
+
+# Force batch files to CRLF on checkout
+*.{cmd,bat} text eol=crlf
+
+# Force shell scripts to LF on checkout
+*.sh text eol=lf
