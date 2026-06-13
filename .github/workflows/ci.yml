@@ -55,7 +55,7 @@ jobs:
             LAST_SOLVED="-"
           fi
 
-          PROGRESS=$(printf '| Source | Solved |\n| ------ | ------ |\n%s| **Total** | **%s** |\n\n**Last solved:** %s' "$ROWS" "$TOTAL" "$LAST_SOLVED")
+          PROGRESS=$(printf '| Source | Solved |\n| ------ | ------ |\n%s\n| **Total** | **%s** |\n\n**Last solved:** %s' "$ROWS" "$TOTAL" "$LAST_SOLVED")
 
           awk -v new="$PROGRESS" '
             /<!-- PROGRESS-START - DO NOT EDIT -->/ { print; print new; skip=1; next }
