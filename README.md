@@ -5,11 +5,11 @@ LeetCode exercises in C#.
 ## Progress
 
 <!-- PROGRESS-START - DO NOT EDIT -->
-| Solved |
-| ------ |
-| 0 |
+| Source | Solved |
+| ------ | ------ |
+| LeetCode | 2 || **Total** | **2** |
 
-**Last solved:** -
+**Last solved:** [1. Two Sum](src/LeetCode/Problems/0001_TwoSum.cs)
 <!-- PROGRESS-END -->
 
 ## Prerequisites
