@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5.3.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -warnaserror --no-restore
+
+      - name: Format Check
+        run: dotnet format ExerciseCSharp.slnx --verify-no-changes --no-restore
+
+      - name: Test
+        run: dotnet test --no-restore
+
+      - name: Update Progress
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          ROWS=""
+          TOTAL=0
+          for SOURCE_DIR in src/*/; do
+            SOURCE=$(basename "$SOURCE_DIR")
+            COUNT=$(find "${SOURCE_DIR}Problems" -name "[0-9]*.cs" 2>/dev/null | wc -l | tr -d ' ')
+            TOTAL=$((TOTAL + COUNT))
+            ROWS="$(printf '%s| %s | %s |\n' "$ROWS" "$SOURCE" "$COUNT")"
+          done
+
+          LAST_FILE=$(git log --diff-filter=A --name-only --pretty=format: -- 'src/*/Problems/[0-9]*.cs' | head -1)
+          if [ -n "$LAST_FILE" ]; then
+            FILENAME=$(basename "$LAST_FILE" .cs)
+            NUM=$(echo "$FILENAME" | grep -oE '^[0-9]+' | sed 's/^0*//')
+            NAME=$(echo "$FILENAME" | sed 's/^[0-9]*_//' | sed 's/\([A-Z]\)/ \1/g' | sed 's/^ //')
+            LAST_SOLVED="[$NUM. $NAME]($LAST_FILE)"
+          else
+            LAST_SOLVED="-"
+          fi
+
+          PROGRESS=$(printf '| Source | Solved |\n| ------ | ------ |\n%s| **Total** | **%s** |\n\n**Last solved:** %s' "$ROWS" "$TOTAL" "$LAST_SOLVED")
+
+          awk -v new="$PROGRESS" '
+            /<!-- PROGRESS-START - DO NOT EDIT -->/ { print; print new; skip=1; next }
+            /<!-- PROGRESS-END -->/ { skip=0 }
+            !skip { print }
+          ' README.md > README.tmp && mv README.tmp README.md
+
+          if git diff --quiet README.md; then
+            echo "No changes to README.md"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "Update progress count"
+            git push
+          fi

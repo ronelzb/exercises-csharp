@@ -1,0 +1,85 @@
+# Remove the line below if you want to inherit .editorconfig settings from higher directories
+root = true
+
+# All files
+[*]
+
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# Issue with .NET 9.0.200: https://github.com/dotnet/sdk/issues/46780
+# charset = utf-8
+
+# New line preferences
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,vb}]
+dotnet_diagnostic.IDE0011.severity = none # Disable No braces preference
+dotnet_diagnostic.IDE0008.severity = none # Disable No explicity type or var preference
+dotnet_diagnostic.CA1062.severity = none # Disable Validate arguments of public methods
+dotnet_diagnostic.CA1305.severity = none # Disable Specify IFormatProvider
+dotnet_diagnostic.IDE0022.severity = none # Disable Use block body for method
+dotnet_diagnostic.CA1308.severity = none # Disable Normalize strings to uppercase
+dotnet_diagnostic.CA1848.severity = none # Disable Use the LoggerMessage delegates
+dotnet_diagnostic.IDE0046.severity = none # Disable Use conditional expression for return
+dotnet_diagnostic.CA2007.severity = none # Disable Do not directly await a Task
+dotnet_diagnostic.IDE0058.severity = none # Disable Expression value is never used
+dotnet_diagnostic.CA1707.severity = none # Disable Identifiers should not contain underscores
+dotnet_diagnostic.CA1822.severity = none # Disable Mark members as static
+dotnet_diagnostic.CA1859.severity = none # Disable Use concrete types when possible
+dotnet_diagnostic.CA1716.severity = none # Disable Identifiers should not match keywords
+
+dotnet_diagnostic.IDE0002.severity = warning # Warn Simplify member access
+dotnet_diagnostic.IDE0005.severity = warning # Warn Remove unnecessary imports
+
+# C# specific settings
+[*.cs]
+
+# Organize usings
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# Null-checking preferences
+csharp_style_conditional_delegate_call = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+
+# Modifier preferences
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+
+# New line preferences
+csharp_new_line_before_open_brace = all
+
+# Naming rules
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# Symbol specifications
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+
+# Naming styles
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+# namespace scope
+csharp_style_namespace_declarations = file_scoped:suggestion
+
+# Default severity for analyzer diagnostics (built into the .NET SDK)
+dotnet_analyzer_diagnostic.severity = warning

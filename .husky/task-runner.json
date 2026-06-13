@@ -1,0 +1,16 @@
+{
+   "tasks": [
+      {
+         "name": "dotnet-format",
+         "group": "pre-commit",
+         "command": "dotnet",
+         "args": [ "format", "ExerciseCSharp.slnx", "--verify-no-changes", "--no-restore" ]
+      },
+      {
+         "name": "dotnet-build",
+         "group": "pre-commit",
+         "command": "dotnet",
+         "args": [ "build", "ExerciseCSharp.slnx", "-warnaserror", "-nologo", "--no-restore" ]
+      }
+   ]
+}
