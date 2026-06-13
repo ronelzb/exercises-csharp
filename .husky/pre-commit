@@ -1,10 +1,11 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Run dotnet format only on staged .cs files
+# Auto-format staged .cs files and re-stage them
 STAGED_CS=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.cs$" | tr '\n' ' ')
 if [ -n "$STAGED_CS" ]; then
-  dotnet format ExercisesCSharp.slnx --verify-no-changes --no-restore --include $STAGED_CS
+  dotnet format ExercisesCSharp.slnx --no-restore --include $STAGED_CS
+  git add $STAGED_CS
 fi
 
 # Always run build via task runner
