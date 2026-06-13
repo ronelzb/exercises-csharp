@@ -7,7 +7,8 @@ LeetCode exercises in C#.
 <!-- PROGRESS-START - DO NOT EDIT -->
 | Source | Solved |
 | ------ | ------ |
-| LeetCode | 2 || **Total** | **2** |
+| LeetCode | 2 |
+| **Total** | **2** |
 
 **Last solved:** [1. Two Sum](src/LeetCode/Problems/0001_TwoSum.cs)
 <!-- PROGRESS-END -->
