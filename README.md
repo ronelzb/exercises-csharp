@@ -7,10 +7,10 @@ LeetCode exercises in C#.
 <!-- PROGRESS-START - DO NOT EDIT -->
 | Source | Solved |
 | ------ | ------ |
-| LeetCode | 3 |
-| **Total** | **3** |
+| LeetCode | 4 |
+| **Total** | **4** |
 
-**Last solved:** [1117. Building H2 O](src/LeetCode/Problems/1117_BuildingH2O.cs)
+**Last solved:** [146. L R U Cache](src/LeetCode/Problems/0146_LRUCache.cs)
 <!-- PROGRESS-END -->
 
 ## Prerequisites
