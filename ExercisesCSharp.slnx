@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/DILifetimes/DILifetimes.csproj" />
+    <Project Path="src/EFCoreInternals/EFCoreInternals.csproj" />
     <Project Path="src/LeetCode/LeetCode.csproj" />
   </Folder>
   <Folder Name="/tests/">
