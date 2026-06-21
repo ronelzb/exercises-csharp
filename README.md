@@ -1,17 +1,23 @@
 # C# Exercises
 
-LeetCode exercises in C#.
+C# exercises covering LeetCode problems and .NET internals.
 
 ## Progress
 
 <!-- PROGRESS-START - DO NOT EDIT -->
 | Source | Solved |
 | ------ | ------ |
-| DILifetimes | 0 || EFCoreInternals | 0 || LeetCode | 5 |
+| LeetCode | 5 |
 | **Total** | **5** |
 
 **Last solved:** [252. Meeting Rooms](src/LeetCode/Problems/0252_MeetingRooms.cs)
 <!-- PROGRESS-END -->
+
+## Projects
+
+- [LeetCode](src/LeetCode/) — algorithmic problem solving
+- [DI Lifetimes](src/DILifetimes/README.md) — singleton, scoped, and transient lifetimes in ASP.NET Core
+- [EF Core Internals](src/EFCoreInternals/README.md) — tracking, lazy loading, N+1, and split queries
 
 ## Prerequisites
 

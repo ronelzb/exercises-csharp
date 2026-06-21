@@ -38,7 +38,7 @@ jobs:
         run: |
           ROWS=""
           TOTAL=0
-          for SOURCE_DIR in src/*/; do
+          for SOURCE_DIR in src/LeetCode/; do
             SOURCE=$(basename "$SOURCE_DIR")
             COUNT=$(find "${SOURCE_DIR}Problems" -name "[0-9]*.cs" 2>/dev/null | wc -l | tr -d ' ')
             TOTAL=$((TOTAL + COUNT))
