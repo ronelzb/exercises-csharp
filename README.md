@@ -7,7 +7,7 @@ LeetCode exercises in C#.
 <!-- PROGRESS-START - DO NOT EDIT -->
 | Source | Solved |
 | ------ | ------ |
-| LeetCode | 5 |
+| DILifetimes | 0 || LeetCode | 5 |
 | **Total** | **5** |
 
 **Last solved:** [252. Meeting Rooms](src/LeetCode/Problems/0252_MeetingRooms.cs)
