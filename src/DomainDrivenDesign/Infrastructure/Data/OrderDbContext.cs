@@ -15,6 +15,12 @@ public class OrderDbContext(DbContextOptions<OrderDbContext> options) : DbContex
 
     modelBuilder.Entity<Order>(entity =>
     {
+      entity.OwnsOne(o => o.Total, money =>
+      {
+        money.Property(m => m.Amount).HasColumnName("TotalAmount");
+        money.Property(m => m.Currency).HasColumnName("TotalCurrency");
+      });
+
       entity.HasMany(o => o.OrderLines)
         .WithOne()
         .HasForeignKey(ol => ol.OrderId)
@@ -24,6 +30,22 @@ public class OrderDbContext(DbContextOptions<OrderDbContext> options) : DbContex
         .WithOne()
         .HasForeignKey(sh => sh.OrderId)
         .OnDelete(DeleteBehavior.Cascade);
+    });
+
+    modelBuilder.Entity<OrderLine>(entity =>
+    {
+      entity.Ignore(ol => ol.LineTotal);
+
+      entity.OwnsOne(ol => ol.ProductSnapshot, snapshot =>
+      {
+        snapshot.Property(ps => ps.ProductId).HasColumnName("ProductId");
+        snapshot.Property(ps => ps.Name).HasColumnName("ProductName");
+        snapshot.OwnsOne(ps => ps.Price, money =>
+        {
+          money.Property(m => m.Amount).HasColumnName("UnitPriceAmount");
+          money.Property(m => m.Currency).HasColumnName("UnitPriceCurrency");
+        });
+      });
     });
   }
 
